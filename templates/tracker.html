@@ -1,0 +1,164 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Tracker
+{% endblock %}
+
+{% block main %}
+    <!-- Ref for search engine: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_filter_table -->
+    <div class="columns">
+        <table class="charts">
+            <tr>
+                <td><div id="piechart"></div></td>
+                <td><div id="columnchart_values"></div></td>
+            </tr>
+        </table>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <!-- empty col to center blog post -->
+            </div>
+            </br>
+
+            <div class="col-md-8">
+                <!-- chart -->
+
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search.." title="Type in a name">
+                </br>
+                <table class="table table-stripped" id="myTable">
+
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Relationship</th>
+                            <th>Name</th>
+                            <th>Hours</th>
+                            <th>Activity</th>
+                            <th></th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for track in tracks %}
+                        <tr>
+                            <td>{{ track.time }}</td>
+                            <td>{{ track.relationship }}</td>
+                            <td>{{ track.name }}</td>
+                            <td>{{ track.hours }}</td>
+                            <td>{{ track.activity }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-md-2">
+                <!-- empty col to center blog post -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script>
+    // for google
+    // load chart and corechart package
+    google.charts.load('current', {packages: ['corechart']});
+
+    //call back when API is loaded
+    google.charts.setOnLoadCallback(drawCategoriesChart);
+    google.charts.setOnLoadCallback(drawNameChart);
+
+    // create an array for CategoriesChart
+    var arr = [['Relationship', 'Total hours']];
+    // JSON parse to convert texts into java objects
+    var pies = JSON.parse('{{ pies | tojson }}');
+
+
+    // add rows to arr for pie chart
+    for (var i = 0; i < pies.length; i++){
+        arr.push([pies[i]["relationship"], pies[i]["total_hours"]]);
+    }
+
+    // This is the callback function which actually draws the chart
+    function drawCategoriesChart() {
+
+        // create data table for categories' chart
+        var data = google.visualization.arrayToDataTable(arr);
+
+        var options = {
+          title: 'Time spent by relationship categories',
+          width: 400,
+          height: 400
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+    }
+
+
+    var arr2 = [['Name', 'Total hours']];
+    var bar = JSON.parse('{{ bar | tojson }}');
+
+    // add rows to arr for bar chart
+    for (var i = 0; i < bar.length; i++){
+        arr2.push([bar[i]["name"], bar[i]["total_hours"]]);
+    }
+
+    function drawNameChart() {
+
+        // create data table for categories' chart
+        var data = google.visualization.arrayToDataTable(arr2);
+
+        var options = {
+          title: 'People you spent most time with (capped at 10)',
+          width: 400,
+          height: 400,
+          legend: { position: "none" }
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_values'));
+
+        chart.draw(data, options);
+    }
+    </script>
+
+    <script>
+    // for the table
+        function myFunction() {
+          var input, filter, table, tr, td, i, j, txtValue;
+          input = document.getElementById("myInput");
+          // convert everything to uppercase
+          filter = input.value.toUpperCase();
+          table = document.getElementById("myTable");
+          tr = table.getElementsByTagName("tr");
+
+          for (i = 0; i < tr.length; i++) {
+                var show = false;
+                // loop through table data
+                for (j = 0; j < tr[i].getElementsByTagName("td").length; j++){
+                    td = tr[i].getElementsByTagName("td")[j];
+                    if (td) {
+                      txtValue = td.textContent || td.innerText;
+                      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                          show = true;
+                      }
+                    }
+                }
+                if (show){
+                    tr[i].style.display = "";
+                }
+                else{
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+
+
+
+
+{% endblock %}

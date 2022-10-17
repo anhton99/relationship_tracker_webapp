@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Relationships
+{% endblock %}
+
+{% block main %}
+
+      <div class="relationship">
+        <h4>Whom did you hang out with today?</h4>
+        <form action="/relationship" method="post">
+
+            <div class="form-group row">
+                <label for="colFormLabel" class="col-sm-4 col-form-label">Name: </label>
+                <div class="col-sm-8">
+                    <input type="text" name="name" class="form-control" placeholder="Name">
+                </div>
+            </div>
+            </br>
+
+            <div class="form-group row">
+                <label for="colFormLabel" class="col-sm-4 col-form-label">Date: </label>
+                <div class="col-sm-8">
+                    <input class="form-control" name="time" type="date" placeholder="yyyy-mm-dd" id="example-date-input" required>
+                </div>
+            </div>
+            </br>
+
+
+            <div class="form-group row">
+                <label for="colFormLabel" class="col-sm-4 col-form-label">Hours spent: </label>
+                <div class="col-sm-8">
+                    <input type="text" name="hours" class="form-control" required>
+                </div>
+            </div>
+            </br>
+
+            <div class="form-group row">
+                <label for="colFormLabel" class="col-sm-4 col-form-label">Relationship: </label>
+                <div class="col-sm-8">
+                    <select class="form-control" name="relationship" required>
+                        <option disabled selected value>Choose</option>
+                            <option value="Family">Family</option>
+                            <option value="Friend">Friend</option>
+                            <option value="Romantic partner">Romantic partner</option>
+                            <option value="Colleague">Colleague</option>
+                            <option value="Acquaintance">Acquaintance</option>
+                            <option value="Other">Other</option>
+                    </select>
+                </div>
+              </div>
+              </br>
+
+          <div class="form-group row">
+            <label for="colFormLabel" class="col-sm-4 col-form-label" required>Activity: </label>
+            <div class="col-sm-8">
+              <textarea id="activity" name="activity" class="form-control" required></textarea>
+            </div>
+          </div>
+          </br>
+
+          <div class="text-center">
+              <button class="btn btn-primary" type="submit">Submit</button>
+          </div>
+        </form>
+
+{% endblock %}

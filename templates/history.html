@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="col-md-2">
+            <!-- empty col to center blog post -->
+        </div>
+
+        <div class="col-md-8 blog-main">
+            </br>
+
+            {% for history in histories %}
+            <div class="blog-post" id="blog">
+                </br>
+                </br>
+                <h2 class="blog-post-title">{{ history.subject }}</h2>
+                </br>
+                <p class="blog-post-meta">{{ history.time }}</p>
+                </br>
+                <p>{{ history.entries }}</p>
+                </br>
+                </br>
+                </br>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="col-md-2">
+            <!-- empty col to center blog post -->
+        </div>
+    </div>
+
+
+{% endblock %}

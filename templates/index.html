@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Homepage
+{% endblock %}
+
+{% block main %}
+    <!-- Hero Section -->
+    {% if session.user_id %}
+    <div class="hero" id="home">
+      <div class="hero__container">
+        <h1 class="hero__heading">There's more to <span>life</span> than just work</h1>
+        <p class="hero__description">Examine your inner life & cultivate social relationships.
+</p>
+      </div>
+    </div>
+    {% else %}
+    <div class="hero" id="home">
+      <div class="hero__container">
+        <h1 class="hero__heading">There's more to <span>life</span> than just work</h1>
+        <p class="hero__description">Examine your inner life & cultivate social relationships.
+</p>
+        <a href="/register" class="btn_a"><button id="register" class="main__btn">Join EMoG</button></a>
+
+      </div>
+    </div>
+    {% endif %}
+
+{% endblock %}

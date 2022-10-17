@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Invitation
+{% endblock %}
+
+{% block main %}
+
+<!-- Services Section -->
+<!-- Margin dynamically -->
+  <div class="services" id="services">
+    <h1>What do you want to do today?</h1>
+
+    <div class="services__wrapper">
+      <div class="services__card">
+        <h2>Journaling</h2>
+        <p>Reflect on your daily life</p>
+        <div class="services__btn">
+          <a href="/journal"><button>Start</button></a>
+        </div>
+
+
+      </div>
+      <div class="services__card">
+        <h2>Relationship Tracker</h2>
+        <p>Track the time you spent with friends and family</p>
+        <div class="services__btn">
+          <a href="/relationship"><button>Start</button></a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

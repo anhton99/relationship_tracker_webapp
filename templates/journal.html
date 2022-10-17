@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Entry
+{% endblock %}
+
+{% block main %}
+    <div class="hero" id="home">
+      <div class="hero__container">
+        <h1 class="hero__description"><span>Journal Entry:</span></h1>
+
+        <div class="row">
+            <div class="myform">
+                <form action="/journal" method="post">
+                    <div class="form-group">
+                        <input class="form-control" name="subject" type="text" placeholder="Subject" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control" name="time" type="date" placeholder="mm/dd/yyyy" id="example-date-input" required>
+                    </div>
+                    </br>
+
+                    <div class="form-group">
+                        <textarea class="form-control" id="textarea1" name="content" placeholder="What's on your mind?" required></textarea>
+                    </div>
+
+                    </br>
+
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                    <br>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

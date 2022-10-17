@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <div class="hero" id="home">
+      <div class="hero__container">
+
+          <h1 class="hero__heading"><span>Welcome Back!</span></h1>
+
+        <div class="row">
+            <div class="myform">
+
+                <form action="/login" method="post">
+                    <div class="form-group">
+                        <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+                    </div>
+                    </br>
+
+                    <div class="form-group">
+                        <input class="form-control" name="password" placeholder="Password" type="password">
+                    </div>
+                    </br>
+
+                    <button class="btn btn-primary" type="submit">Log In</button>
+                    <br>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
